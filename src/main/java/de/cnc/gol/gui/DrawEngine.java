@@ -8,6 +8,7 @@ import de.cnc.gol.container.Map;
 public class DrawEngine extends JPanel {
 
     private static final int CELL_SIZE = 16;
+    private final int repaintDelay = 300;
     private final Map map;
 
     public DrawEngine(final Map map) {
@@ -21,6 +22,14 @@ public class DrawEngine extends JPanel {
             frame.setLocationRelativeTo(null);
             frame.setVisible(true);
         });
+    }
+
+    public void start() {
+        final Timer timer = new Timer(repaintDelay, event -> {
+            map.computeNextRound();
+            this.repaint();
+        });
+        timer.start();
     }
 
     @Override
