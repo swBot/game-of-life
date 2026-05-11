@@ -71,6 +71,10 @@ public class Map {
         return board[x][y];
     }
 
+    public Collection<Cell> getCells() {
+        return cells;
+    }
+
     public void computeNextRound() {
         for (Cell cell : cells) {
             cell.setAliveNextRound(ruleEngine.isAliveNextRound(cell));

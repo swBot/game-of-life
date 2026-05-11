@@ -6,16 +6,21 @@ import javax.swing.*;
 import de.cnc.gol.container.Map;
 
 public class DrawEngine extends JPanel {
+    private static final int DELAY = 100;
+    private static final Color COLOR_DARK = new Color(125, 82, 53);
+    private static final Color COLOR_DEFAULT = new Color(238, 238, 210);
 
-    private static final int CELL_SIZE = 16;
-    private final int repaintDelay = 300;
+    private final int cellSizeHorizontal;
+    private final int cellSizeVertical;
     private final Map map;
 
     public DrawEngine(final Map map) {
         this.map = map;
+        this.cellSizeHorizontal = 1900 / map.getWidth();
+        this.cellSizeVertical = 1024 / map.getHeight();
 
         SwingUtilities.invokeLater(() -> {
-            JFrame frame = new JFrame("Punktiversum");
+            JFrame frame = new JFrame("Spiel des Lebens");
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             frame.setContentPane(this);
             frame.pack();
@@ -25,7 +30,7 @@ public class DrawEngine extends JPanel {
     }
 
     public void start() {
-        final Timer timer = new Timer(repaintDelay, event -> {
+        final Timer timer = new Timer(DELAY, event -> {
             map.computeNextRound();
             this.repaint();
         });
@@ -33,20 +38,17 @@ public class DrawEngine extends JPanel {
     }
 
     @Override
-    protected void paintComponent(Graphics g) {
-        super.paintComponent(g);
+    protected void paintComponent(final Graphics graphics) {
+        super.paintComponent(graphics);
 
-        for (int row = 0; row < map.getHeight(); row++) {
-            for (int col = 0; col < map.getWidth(); col++) {
-                boolean isDark = map.getCell(col, row).isAlive();
-                g.setColor(isDark ? new Color(125, 82, 53) : new Color(238, 238, 210));
-                g.fillRect(col * CELL_SIZE, row * CELL_SIZE, CELL_SIZE, CELL_SIZE);
-            }
-        }
+        map.getCells().forEach(cell -> {
+            graphics.setColor(cell.isAlive() ? COLOR_DARK : COLOR_DEFAULT);
+            graphics.fillRect(cell.getX() * cellSizeHorizontal, cell.getY() * cellSizeVertical, cellSizeHorizontal, cellSizeVertical);
+        });
     }
 
     @Override
     public Dimension getPreferredSize() {
-        return new Dimension(map.getWidth() * CELL_SIZE, map.getHeight() * CELL_SIZE);
+        return new Dimension( map.getWidth() * cellSizeHorizontal, map.getHeight() * cellSizeVertical);
     }
 }
