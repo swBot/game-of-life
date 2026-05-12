@@ -9,7 +9,7 @@ import de.cnc.gol.materials.Settings;
 public class SettingsDefault implements Settings {
     private static final double RATIO_INITIAL_ACTIVE = 0.1;
     private static final double RATIO_RESOLUTION = 9.0 / 16.0;
-    private static final int RESOLUTION_HORIZONTAL = 1980;
+    private static final int RESOLUTION_HORIZONTAL = 1664;
     private static final int RESOLUTION_VERTICAL = (int) (RESOLUTION_HORIZONTAL * RATIO_RESOLUTION);
     private static final int DELAY = 100;
     private static final Color COLOR_DARK = new Color(125, 82, 53);
@@ -95,5 +95,15 @@ public class SettingsDefault implements Settings {
                 JOptionPane.WARNING_MESSAGE
             );
         }
+    }
+
+
+    @Override
+    public String toString() {
+        return "SettingsDefault{" +
+            " width=" + width +
+            ",  height=" + height +
+            ",  initialActive=" + initialActive +
+            '}';
     }
 }

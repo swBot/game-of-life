@@ -6,18 +6,31 @@ import java.util.concurrent.ThreadLocalRandom;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import de.cnc.gol.materials.MapMaintained;
 import de.cnc.gol.materials.RuleEngine;
 import de.cnc.gol.materials.Settings;
 
-public class Map {
+/** Zwei-dimensionales Koordinatensystem, welches an den Rändern beschränkt ist. */
+public class MapDefault implements MapMaintained {
+    /** Breite des Koordinatensystems. */
     private final int width;
+
+    /** Höhe des Koordinatensystems. */
     private final int height;
+
+    /** Anzahl der Felder die initial am Leben sein sollen. */
     private final int initialActiveFields;
+
+    /** Controller der die Regeln des Spiels durchsetzt. */
     private final RuleEngine ruleEngine;
+
+    /** Elemente des Koordinatensystems angeordnet in einer 2-dimensionalen Matrix. */
     private final Cell[][] board;
+
+    /** Elemente des Koordinatensystems ungeordnet. */
     private final Collection<Cell> cells;
 
-    public Map(final Settings settings) {
+    public MapDefault(final Settings settings) {
         this.width = settings.getWidth();
         this.height = settings.getHeight();
         this.initialActiveFields = Math.min(settings.getInitialActive(), width * height);
@@ -26,20 +39,21 @@ public class Map {
         this.cells = new ArrayList<>();
     }
 
+    @Override
     public void initializeDataStructure() {
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
                 final Cell cell = new Cell(x, y);
-                board[x][y] = cell;
-                cells.add(cell);
+                this.addCell(cell);
                 this.computeNeighbours(cell);
             }
         }
 
-        Logger.getLogger(Map.class.getName()).log(Level.INFO, "Map initialized: " + this);
+        Logger.getLogger(MapDefault.class.getName()).log(Level.INFO, "Map initialized: " + this);
     }
 
-    private void computeNeighbours(final Cell cell) {
+    @Override
+    public void computeNeighbours(final Cell cell) {
         final int x = cell.getX();
         final int y = cell.getY();
 
@@ -57,6 +71,7 @@ public class Map {
         }
     }
 
+    @Override
     public void randomizeActiveFields() {
         cells.forEach(cell -> cell.setAlive(false));
 
@@ -71,31 +86,36 @@ public class Map {
         }
     }
 
-    public void computeNextRound() {
-        for (Cell cell : cells) {
-            cell.setAliveNextRound(ruleEngine.isAliveNextRound(cell));
-        }
-        for (Cell cell : cells) {
-            cell.setNextRound();
-        }
+    @Override
+    public void initiateNextRound() {
+        cells.forEach(cell -> cell.setAliveNextRound(ruleEngine.isAliveNextRound(cell)));
+        cells.forEach(Cell::setNextRound);
     }
 
+    @Override
     public Cell getCell(final int x, final int y) {
         return board[x][y];
     }
 
+    @Override
     public Collection<Cell> getCells() {
         return cells;
     }
 
+    @Override
     public int getWidth() {
         return width;
     }
 
+    @Override
     public int getHeight() {
         return height;
     }
 
+    protected void addCell(final Cell cell) {
+        this.board[cell.getX()][cell.getY()] = cell;
+        this.cells.add(cell);
+    }
 
     @Override
     public String toString() {

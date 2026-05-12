@@ -1,8 +1,9 @@
 package de.cnc.gol.run;
 
-import de.cnc.gol.container.Map;
+import de.cnc.gol.container.MapInfinit;
 import de.cnc.gol.gui.DrawingEngineJPanel;
 import de.cnc.gol.materials.DrawingEngine;
+import de.cnc.gol.materials.MapMaintained;
 import de.cnc.gol.materials.Settings;
 
 public class Game {
@@ -10,7 +11,7 @@ public class Game {
         final Settings settings = new SettingsDefault();
         settings.askCustomer();
 
-        final Map map = new Map(settings);
+        final MapMaintained map = new MapInfinit(settings);
         map.initializeDataStructure();
         map.randomizeActiveFields();
 
