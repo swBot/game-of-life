@@ -3,7 +3,9 @@ package de.cnc.gol.run;
 import de.cnc.gol.container.Cell;
 import de.cnc.gol.materials.RuleEngine;
 
+/** Standardimplementierung der Spielregeln streng nach Conway. */
 public class RuleEngineDefault implements RuleEngine {
+
     @Override
     public boolean isAliveNextRound(final Cell cell) {
         final long aliveNeighbours = cell.getNeighbours().stream().filter(Cell::isAlive).count();
