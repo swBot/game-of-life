@@ -7,9 +7,9 @@ import java.util.Objects;
 public class Cell {
     private final int x;
     private final int y;
-    private final Collection<Cell> neighbours = new HashSet<>();
     private boolean alive;
     private boolean aliveNextRound;
+    private final Collection<Cell> neighbours = new HashSet<>();
 
     public Cell(final int x, final int y) {
         this.x = x;
@@ -40,7 +40,7 @@ public class Cell {
         this.alive = alive;
     }
 
-    public boolean getAliveNextRound() {
+    public boolean isAliveNextRound() {
         return aliveNextRound;
     }
 

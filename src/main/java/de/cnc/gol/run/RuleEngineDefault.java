@@ -1,6 +1,7 @@
 package de.cnc.gol.run;
 
 import de.cnc.gol.container.Cell;
+import de.cnc.gol.materials.RuleEngine;
 
 public class RuleEngineDefault implements RuleEngine {
     @Override

@@ -4,20 +4,24 @@ import java.awt.*;
 import javax.swing.*;
 
 import de.cnc.gol.container.Map;
+import de.cnc.gol.run.Settings;
 
-public class DrawEngine extends JPanel {
-    private static final int DELAY = 100;
-    private static final Color COLOR_DARK = new Color(125, 82, 53);
-    private static final Color COLOR_DEFAULT = new Color(238, 238, 210);
 
+public class DrawingEngine extends JPanel {
     private final int cellSizeHorizontal;
     private final int cellSizeVertical;
     private final Map map;
+    private final int delay;
+    private final Color colorDark;
+    private final Color colorDefault;
 
-    public DrawEngine(final Map map) {
+    public DrawingEngine(final Map map, final Settings settings) {
         this.map = map;
-        this.cellSizeHorizontal = 1900 / map.getWidth();
-        this.cellSizeVertical = 1024 / map.getHeight();
+        this.cellSizeHorizontal = settings.getResolutionHorizontal() / map.getWidth();
+        this.cellSizeVertical = settings.getResolutionVertical() / map.getHeight();
+        this.delay = settings.getDelay();
+        this.colorDark = settings.getColorDark();
+        this.colorDefault = settings.getColorDefault();
 
         SwingUtilities.invokeLater(() -> {
             JFrame frame = new JFrame("Spiel des Lebens");
@@ -30,7 +34,7 @@ public class DrawEngine extends JPanel {
     }
 
     public void start() {
-        final Timer timer = new Timer(DELAY, event -> {
+        final Timer timer = new Timer(delay, event -> {
             map.computeNextRound();
             this.repaint();
         });
@@ -42,7 +46,7 @@ public class DrawEngine extends JPanel {
         super.paintComponent(graphics);
 
         map.getCells().forEach(cell -> {
-            graphics.setColor(cell.isAlive() ? COLOR_DARK : COLOR_DEFAULT);
+            graphics.setColor(cell.isAlive() ? colorDark : colorDefault);
             graphics.fillRect(cell.getX() * cellSizeHorizontal, cell.getY() * cellSizeVertical, cellSizeHorizontal, cellSizeVertical);
         });
     }
