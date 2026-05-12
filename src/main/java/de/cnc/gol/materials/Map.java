@@ -4,21 +4,21 @@ import java.util.Collection;
 
 import de.cnc.gol.container.Cell;
 
-/** Definition eines Spielfeldes. */
+/** Definition of a game board. */
 public interface Map {
 
-    /** Diese Funktion gibt eine Zelle anhand seiner kartesischen Koordinaten zurück. */
+    /** Returns a cell by its Cartesian coordinates. */
     Cell getCell(int x, int y);
 
-    /** Diese Funktion gibt alle Zellen ungeordnet zurück. */
+    /** Returns all cells in no particular order. */
     Collection<Cell> getCells();
 
-    /** Diese Funktion gibt die Breite des Spielfeldes zurück. */
+    /** Returns the width of the game board. */
     int getWidth();
 
-    /** Diese Funktion gibt die Höhe des Spielfeldes zurück. */
+    /** Returns the height of the game board. */
     int getHeight();
 
-    /** Über diese Methode wird die nächste Runde berechnet und eingeleitet. */
+    /** Computes and initiates the next round. */
     void initiateNextRound();
 }

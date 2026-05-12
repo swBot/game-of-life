@@ -1,7 +1,7 @@
 package de.cnc.gol.materials;
 
-/** Definition einer GUI-Ausgabe. */
+/** Definition of a GUI output. */
 public interface DrawingEngine {
-    /** Startet die kontinuierliche Ausgabe. */
+    /** Starts the continuous rendering loop. */
     void start();
 }

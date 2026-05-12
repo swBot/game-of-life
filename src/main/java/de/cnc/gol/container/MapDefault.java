@@ -10,24 +10,24 @@ import de.cnc.gol.materials.MapMaintained;
 import de.cnc.gol.materials.RuleEngine;
 import de.cnc.gol.materials.Settings;
 
-/** Zwei-dimensionales Koordinatensystem, welches an den Rändern beschränkt ist. */
+/** Two-dimensional coordinate system bounded at the edges. */
 public class MapDefault implements MapMaintained {
-    /** Breite des Koordinatensystems. */
+    /** Width of the coordinate system. */
     private final int width;
 
-    /** Höhe des Koordinatensystems. */
+    /** Height of the coordinate system. */
     private final int height;
 
-    /** Anzahl der Felder die initial am Leben sein sollen. */
+    /** Number of fields that should be alive at the start. */
     private final int initialActiveFields;
 
-    /** Controller der die Regeln des Spiels durchsetzt. */
+    /** Controller that enforces the game rules. */
     private final RuleEngine ruleEngine;
 
-    /** Elemente des Koordinatensystems angeordnet in einer 2-dimensionalen Matrix. */
+    /** Elements of the coordinate system arranged in a 2-dimensional matrix. */
     private final Cell[][] board;
 
-    /** Elemente des Koordinatensystems ungeordnet. */
+    /** Elements of the coordinate system in no particular order. */
     private final Collection<Cell> cells;
 
     public MapDefault(final Settings settings) {

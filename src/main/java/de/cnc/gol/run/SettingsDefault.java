@@ -85,7 +85,7 @@ public class SettingsDefault implements Settings {
                     return value;
                 }
             } catch (NumberFormatException ignored) {
-                // Ungültige Eingabe wird über den Hinweisdialog behandelt.
+                // Invalid input is handled via the warning dialog.
             }
 
             JOptionPane.showMessageDialog(

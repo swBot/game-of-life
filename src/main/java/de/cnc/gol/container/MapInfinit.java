@@ -5,7 +5,7 @@ import java.util.logging.Logger;
 
 import de.cnc.gol.materials.Settings;
 
-/** Zwei-dimensionales Koordinatensystem, welches an den Rändern NICHT beschränkt ist. */
+/** Two-dimensional coordinate system that wraps around at the edges (toroidal / infinite). */
 public class MapInfinit extends MapDefault {
 
     public MapInfinit(final Settings settings) {

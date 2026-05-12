@@ -2,35 +2,35 @@ package de.cnc.gol.materials;
 
 import java.awt.*;
 
-/** Definition der Einstellungen zum gesamten Spielablauf. */
+/** Definition of the settings for the entire game. */
 public interface Settings {
-    /** Über diese Funktion wird der Aufrufende nach den Rahmenbedingungen des Spielfeldes gefragt. */
+    /** Prompts the user to configure the game parameters. */
     void askCustomer();
 
-    /** Legt die geforderte Breite des Spielfeldes fest. */
+    /** Returns the requested width of the game board. */
     int getWidth();
 
-    /** Legt die geforderte Höhe des Spielfeldes fest. */
+    /** Returns the requested height of the game board. */
     int getHeight();
 
-    /** Legt die geforderte Menge an Zellen fest, die zu Beginn am Leben sein sollen. */
+    /** Returns the number of cells that should be alive at the start. */
     int getInitialActive();
 
-    /** Legt die Implementierung der Spielregeln fest. */
+    /** Returns the rule engine implementation to use. */
     RuleEngine getRuleEngine();
 
-    /** Legt die horizontale Auflösung der Ausgabe fest. */
+    /** Returns the horizontal resolution of the output. */
     int getResolutionHorizontal();
 
-    /** Legt die vertikale Auflösung der Ausgabe fest. */
+    /** Returns the vertical resolution of the output. */
     int getResolutionVertical();
 
-    /** Legt die Verzögerung fest, mit der das Spiel neue Runden berechnet und zeichnet. */
+    /** Returns the delay (in ms) between computing and drawing each new round. */
     int getDelay();
 
-    /** Legt die Farbe der Zellen fest, die nicht am Leben sind. */
+    /** Returns the colour used for dead cells. */
     Color getColorDefault();
 
-    /** Legt die Farbe der Zellen fest, die am Leben sind. */
+    /** Returns the colour used for living cells. */
     Color getColorDark();
 }

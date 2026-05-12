@@ -7,27 +7,27 @@ import de.cnc.gol.materials.DrawingEngine;
 import de.cnc.gol.materials.Map;
 import de.cnc.gol.materials.Settings;
 
-/** Implementierung der grafischen Ausgabe über JPanel. */
+/** Implementation of the graphical output using JPanel. */
 public class DrawingEngineJPanel extends JPanel implements DrawingEngine {
-    /** Horizontale Größe der gerenderten Zellen. */
+    /** Horizontal size of a rendered cell in pixels. */
     private final int cellSizeHorizontal;
 
-    /** Vertikale Größe der gerenderten Zellen. */
+    /** Vertical size of a rendered cell in pixels. */
     private final int cellSizeVertical;
 
-    /** Zu zeichnende Karte. */
+    /** The map to be rendered. */
     private final Map map;
 
-    /** Verzögerung mit der jede Runde neu gezeichnet/ berechnet wird. */
+    /** Delay in milliseconds between computing and drawing each round. */
     private final int delay;
 
-    /** Farbe der Zellen, die am Leben sind. */
+    /** Colour of living cells. */
     private final Color colorDark;
 
-    /** Farbe der Zellen, die nicht am Leben sind. */
+    /** Colour of dead cells. */
     private final Color colorDefault;
 
-    /** Gesamtgröße der ausgegebenen Spielfläche. */
+    /** Total size of the rendered game area. */
     private final Dimension dimension;
 
     public DrawingEngineJPanel(final Map map, final Settings settings) {

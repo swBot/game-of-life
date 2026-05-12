@@ -2,8 +2,8 @@ package de.cnc.gol.materials;
 
 import de.cnc.gol.container.Cell;
 
-/** Diese Definition legt die Spielregeln fest. */
+/** Definition of the game rules. */
 public interface RuleEngine {
-    /** Über diese Funktion kann für eine gegebene Zelle berechnet werden, ob sie in der nächsten Runde am Leben ist. */
+    /** Determines whether a given cell will be alive in the next round. */
     boolean isAliveNextRound(Cell cell);
 }

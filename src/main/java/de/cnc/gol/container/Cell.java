@@ -4,21 +4,21 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Objects;
 
-/** Objekte dieser Klasse repräsentieren Zellen in einem Koordinatensystem. */
+/** Objects represent cells in a coordinate system. */
 public class Cell {
-    /** Koordinate in der euklidischen Ebene. */
+    /** Coordinate in the Euclidean plane. */
     private final int x;
 
-    /** Koordinate in der euklidischen Ebene. */
+    /** Coordinate in the Euclidean plane. */
     private final int y;
 
-    /** Indikator, ob die Zelle in der aktuellen Runde am Leben ist. */
+    /** Indicator whether the cell is alive in the current round. */
     private boolean alive;
 
-    /** Indikator, ob die Zelle in der nächsten Runde am Leben ist. */
+    /** Indicator whether the cell will be alive in the next round. */
     private boolean aliveNextRound;
 
-    /** Aufzählung aller Nachbarn der Zelle. */
+    /** Collection of all neighbours of this cell. */
     private final Collection<Cell> neighbours = new HashSet<>();
 
     public Cell(final int x, final int y) {
