@@ -7,7 +7,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import de.cnc.gol.materials.RuleEngine;
-import de.cnc.gol.run.Settings;
+import de.cnc.gol.materials.Settings;
 
 public class Map {
     private final int width;

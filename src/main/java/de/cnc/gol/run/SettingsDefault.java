@@ -4,8 +4,9 @@ import java.awt.*;
 import javax.swing.*;
 
 import de.cnc.gol.materials.RuleEngine;
+import de.cnc.gol.materials.Settings;
 
-public class Settings {
+public class SettingsDefault implements Settings {
     private static final double RATIO_INITIAL_ACTIVE = 0.1;
     private static final double RATIO_RESOLUTION = 9.0 / 16.0;
     private static final int RESOLUTION_HORIZONTAL = 1980;
@@ -19,44 +20,54 @@ public class Settings {
     private int height = (int) (width * RATIO_RESOLUTION);
     private int initialActive = (int) (width * height * RATIO_INITIAL_ACTIVE);
 
+    @Override
     public void askCustomer() {
         this.width = promptForPositiveInt("Breite eingeben", this.width);
         this.height = promptForPositiveInt("Höhe eingeben", (int) (this.width * RATIO_RESOLUTION));
         this.initialActive = promptForPositiveInt("Initiales Leben eingeben", (int) (width * height * RATIO_INITIAL_ACTIVE));
     }
 
+    @Override
     public int getWidth() {
         return width;
     }
 
+    @Override
     public int getHeight() {
         return height;
     }
 
+    @Override
     public int getInitialActive() {
         return initialActive;
     }
 
+    @Override
     public RuleEngine getRuleEngine() {
         return ruleEngine;
     }
 
+    @Override
     public int getResolutionHorizontal() {
         return RESOLUTION_HORIZONTAL;
     }
 
+    @Override
     public int getResolutionVertical() {
         return RESOLUTION_VERTICAL;
     }
 
+    @Override
     public int getDelay() {
         return DELAY;
     }
 
+    @Override
     public Color getColorDefault() {
         return COLOR_DEFAULT;
     }
 
+    @Override
     public Color getColorDark() {
         return COLOR_DARK;
     }

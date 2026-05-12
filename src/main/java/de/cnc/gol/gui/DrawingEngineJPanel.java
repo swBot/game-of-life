@@ -4,10 +4,11 @@ import java.awt.*;
 import javax.swing.*;
 
 import de.cnc.gol.container.Map;
-import de.cnc.gol.run.Settings;
+import de.cnc.gol.materials.DrawingEngine;
+import de.cnc.gol.materials.Settings;
 
 
-public class DrawingEngine extends JPanel {
+public class DrawingEngineJPanel extends JPanel implements DrawingEngine {
     private final int cellSizeHorizontal;
     private final int cellSizeVertical;
     private final Map map;
@@ -15,7 +16,7 @@ public class DrawingEngine extends JPanel {
     private final Color colorDark;
     private final Color colorDefault;
 
-    public DrawingEngine(final Map map, final Settings settings) {
+    public DrawingEngineJPanel(final Map map, final Settings settings) {
         this.map = map;
         this.cellSizeHorizontal = settings.getResolutionHorizontal() / map.getWidth();
         this.cellSizeVertical = settings.getResolutionVertical() / map.getHeight();
@@ -33,6 +34,7 @@ public class DrawingEngine extends JPanel {
         });
     }
 
+    @Override
     public void start() {
         final Timer timer = new Timer(delay, event -> {
             map.computeNextRound();
